@@ -9,4 +9,5 @@ urlpatterns = [
     path('preferencies/<int:pk>/', PreferenciesAPIUpdateDestroy.as_view()),
     path('salecart', SaleCartAPIList.as_view()),
     path('salecart/<int:pk>/', SaleCartAPIList.as_view()),
+    path('user', UserAPIList.as_view()),
 ]

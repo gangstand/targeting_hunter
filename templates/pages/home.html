@@ -4,5 +4,72 @@
 {% block title %}Главная{% endblock title %}
 
 {% block content %}
+    <section class="section">
+        <div class="container">
+            <article class="article">
+                <h2 class="title">TargetHunter</h2>
+                <p class="text">
+                    Умный таргетинг уже здесь! С нашим сервисом вы удовлетворите любого клиента. Проследите его
+                    предпочтения по камерам и сделайте уникальные акции для каждого покупателя
+                </p>
+                <button class="button"><a href="#">Получить</a></button>
+            </article>
 
+            <div class="decoration">
+                <img src="{% static 'images/sales.png' %}">
+            </div>
+        </div>
+        <img src="{% static 'images/target.png' %}" class="target-back">
+    </section>
+    <section class="section section--dark">
+        <img src="{% static 'images/circle.png' %}" class="circle-back">
+        <img src="{% static 'images/settings.png' %}" class="circle-settings">
+
+        <div class="container container--reverse">
+            <div class="decoration decoration--small">
+                <img src="{% static 'images/desktop.png' %}">
+            </div>
+
+            <div class="list">
+                <div class="list__item">
+                    <span class="material-symbols-outlined list__icon">check_box</span>
+                    <p class="text">Интегрируется с любой камерой</p>
+                </div>
+                <div class="list__item">
+                    <span class="material-symbols-outlined list__icon">check_box</span>
+                    <p class="text">Удобная админ-панель</p>
+                </div>
+                <div class="list__item">
+                    <span class="material-symbols-outlined list__icon">check_box</span>
+                    <p class="text">Интерфейс вывода статистики пользователей</p>
+                </div>
+                <div class="list__item">
+                    <span class="material-symbols-outlined list__icon">check_box</span>
+                    <p class="text">Привязка данных к скидочной карте покупателей</p>
+                </div>
+            </div>
+        </div>
+        <div class="center">
+            <button class="button button--long">
+                Исползовать
+            </button>
+        </div>
+    </section>
+    <section class="section">
+        <div class="container">
+            <article class="article">
+                <h2 class="title">Всё помещается в кормане!</h2>
+                <p class="text">
+                    Админ-панель, интерфейс вывода статиски, граффики рекомендаций пользовтелей - абсолютно все
+                    доступно в вашем телефоне на мобильной версии сайта, которая загрузится на любом устройстве
+                </p>
+                <button class="button"><a href="#">Начать</a></button>
+            </article>
+
+            <div class="decoration">
+                <img src="{% static 'images/phone.png' %}">
+            </div>
+        </div>
+
+    </section>
 {% endblock content %}

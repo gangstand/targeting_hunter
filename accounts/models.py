@@ -31,6 +31,7 @@ class UserBaseData(models.Model):
     nationality = models.CharField(verbose_name='Национальность', max_length=256)
     kid = models.BooleanField(verbose_name='Ребенок', blank=True, null=True, default=None)
     animal = models.BooleanField(verbose_name='Животное', blank=True, null=True, default=None)
+    is_moderator = models.BooleanField(verbose_name='Модерирование',  blank=True, null=False, default=False)
 
     class Meta:
         abstract = True
@@ -38,6 +39,8 @@ class UserBaseData(models.Model):
 
 class CustomUser(AbstractUser, BasePeopleColor, BioDataBaseModel, UserBaseData):
     moderator = models.BooleanField(verbose_name='Модератор', blank=True, null=True, default=False)
+
+    EQUIRED_FIELDS = ['patronymic', 'email', 'male','age','nationality','animal',]
 
     def __str__(self):
         return f"{self.last_name}" + f"{self.first_name}"
