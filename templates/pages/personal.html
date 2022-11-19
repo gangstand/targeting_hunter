@@ -1,0 +1,15 @@
+{% extends '_base.html' %}
+{% load static %}
+
+{% block title %}Личный кабинет{% endblock title %}
+
+{% block content %}
+    <section class="section">
+        {% if user.moderator %}
+            <h1>Вы модератор</h1>
+        {% else %}
+            <h1>У вас нет прав модераторв</h1>
+            <a href="{% url 'home' %}">Вернуться на главную</a>
+        {% endif %}
+    </section>
+{% endblock content %}

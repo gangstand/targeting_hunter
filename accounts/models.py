@@ -18,7 +18,7 @@ class BasePeopleColor(models.Model):
 
 
 class BioDataBaseModel(models.Model):
-    face = models.FileField(verbose_name='Лицо II', max_length=256)
+    face = models.FileField(verbose_name='Лицо II', max_length=256, null=False)
 
     class Meta:
         abstract = True
@@ -39,8 +39,6 @@ class UserBaseData(models.Model):
 
 class CustomUser(AbstractUser, BasePeopleColor, BioDataBaseModel, UserBaseData):
     moderator = models.BooleanField(verbose_name='Модератор', blank=True, null=True, default=False)
-
-    EQUIRED_FIELDS = ['patronymic', 'email', 'male','age','nationality','animal',]
 
     def __str__(self):
         return f"{self.last_name}" + f"{self.first_name}"

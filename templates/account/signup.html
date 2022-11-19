@@ -4,12 +4,62 @@
 {% block title %}Регистрация{% endblock %}
 
 {% block content %}
-    <section class="section">
-        <h2>Регистрация</h2>
-        <form method="post">
-          {% csrf_token %}
-          {{ form|crispy }}
-          <button class="btn btn-success" type="submit">Регистрация</button>
+    <section class="section section--auth">
+
+        <form method="post" enctype="multipart/form-data" class="form">
+            {% csrf_token %}
+
+
+            <h2 class="form-title">Регистрация</h2>
+
+
+            <div class="field">
+
+                <label class="label">Введите ваш email</label>
+                {{ form.email }}
+                {% if form.username.errors %}
+                    <p class="error">{{ form.email.errors }}</p>
+                {% endif %}
+            </div>
+            <div class="field">
+
+                <label class="label">Придумайте имя пользователя</label>
+                {{ form.username }}
+                {% if form.username.errors %}
+                    <p class="error">{{ form.username.errors }}</p>
+                {% endif %}
+            </div>
+            <div class="field">
+                <label class="label">Придумайте надёжный пароль</label>
+
+                {{ form.password1 }}
+                {% if form.password1.errors %}
+                    <p class="error">{{ form.password1.errors }}</p>
+                {% endif %}
+            </div>
+
+            <div class="field">
+
+                <label class="label">Повторите введённый пароль</label>
+                {{ form.password2 }}
+                {% if form.password2.errors %}
+                    <p class="error">{{ form.password2.errors }}</p>
+                {% endif %}
+            </div>
+            <div class="file-field">
+                <label class="file-label">
+                    {{ form.face }}
+                    <span class="material-symbols-outlined">
+                        account_box
+                    </span>
+                    <p class="file-label__text">Загрузите фотографию вашего лица</p>
+                </label>
+            </div>
+            {% if form.face.errors %}
+                <p class="error">{{ form.face.errors }}</p>
+            {% endif %}
+
+            <button class="button-submit" type="submit">Зарегистрироваться</button>
         </form>
     </section>
 

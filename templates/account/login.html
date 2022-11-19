@@ -4,12 +4,29 @@
 {% block title %}Войти{% endblock %}
 
 {% block content %}
-    <section class="section">
-        <h2>Войти</h2>
-        <form method="post">
+    <section class="section section--auth">
+        <form method="post" class="form">
+            <h2 class="form-title">Вход в аккаунт</h2>
             {% csrf_token %}
-            {{ form|crispy }}
-            <button class="btn btn-success" type="submit">Войти</button>
+
+
+             <div class="field">
+                <label class="label">Введите имя пользователя</label>
+                {{ form.login }}
+                 {% if form.login.errors %}
+                    <p class="error">{{ form.login.errors }}</p>
+                {% endif %}
+            </div>
+
+            <div class="field">
+                <label class="label">Введите пароль</label>
+                {{ form.password }}
+                {% if form.password.errors %}
+                    <p class="error">{{ form.password.errors }}</p>
+                {% endif %}
+            </div>
+
+            <button class="button-submit" type="submit">Войти</button>
         </form>
         <a href="{% url 'account_reset_password' %}">Забыли пароль?</a>
     </section>

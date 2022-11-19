@@ -198,6 +198,10 @@ a {
     background-color: var(--color-blue);
 }
 
+.section--auth {
+    margin-top: 50px;
+}
+
 .article {
     max-width: 400px;
     font-size: 10px;
@@ -374,4 +378,146 @@ a {
         font-size: 20px;
     }
 }
+
+.form {
+    width: 90%;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    font-size: 16px;
+}
+
+.field {
+    width: 100%;
+
+    margin-bottom: 10px;
+}
+
+.field:last-child {
+    margin-bottom: 0;
+}
+
+.label {
+    display: block;
+
+    font-size: .75em;
+    font-weight: 600;
+}
+
+.field input {
+    width: 100%;
+    padding: 10px;
+
+    background-color: transparent;
+
+    border: 2px solid var(--color-blue);
+    border-radius: 10px;
+
+    font-size: 1em;
+}
+
+.button-submit {
+    background-color: var(--color-blue);
+
+    width: 100%;
+    padding: 12px 0;
+    border-radius: 10px;
+
+    color: #fff;
+    font-size: 1em;
+}
+
+
+
+.errorlist {
+    list-style: none;
+    color: red;
+    font-size: 12px;
+    margin-bottom: 0;
+}
+
+.errorlist li {
+    margin: 0;
+    padding: 0;
+}
+
+.file-field {
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 30px;
+
+    display: flex;
+    justify-content: space-between;
+}
+
+.file-label {
+    width: 100%;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    cursor: pointer;
+
+    border-radius: 10px;
+    border: 2px dashed #414042;
+}
+
+.file-label:hover {
+    border-color: var(--color-grey);
+    color: var(--color-grey);
+}
+
+.file-label__text {
+    font-weight: 600;
+    font-size: 1em;
+    text-align: center;
+
+    max-width: 50%;
+}
+
+.file-label input {
+    display: none;
+}
+
+.file-label span {
+    font-size: 5em;
+}
+
+.form-title {
+    font-size: 2.5em;
+    font-weight: 700;
+
+    margin-bottom: 30px;
+}
+
+
+@media (min-width: 660px) {
+    .form {
+        width: 60%;
+        font-size: 20px;
+    }
+
+    .file-label__text {
+        font-size: 1.3em;
+        max-width: 40%;
+    }
+
+}
+
+.authed-link {
+    color: var(--color-black);
+    padding-right: 10px;
+    border-right: 2px solid var(--color-blue);
+
+    text-transform: uppercase;
+}
+
+.logout-link {
+    color: var(--color-grey);
+    padding-left: 10px;
+}
+
 
