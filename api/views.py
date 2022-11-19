@@ -2,8 +2,9 @@ from django.shortcuts import render
 from rest_framework import generics
 
 from accounts.models import CustomUser
-from api.models import Category, Preferencies, SaleCart
-from api.serializer import CategorySerializer, PreferenciesSerializer, SaleCartSerializer, UserSerializer
+from api.models import Category, Preferencies, SaleCart, Product
+from api.serializer import CategorySerializer, PreferenciesSerializer, SaleCartSerializer, UserSerializer, \
+    ProductSerializer
 
 
 class CategoryAPIList(generics.ListCreateAPIView):
@@ -39,3 +40,13 @@ class SaleCartAPIUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 class UserAPIList(generics.ListAPIView):
     queryset = CustomUser.objects.all()
     serializer_class = UserSerializer
+
+
+class ProductAPIList(generics.ListCreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
+
+
+class ProductAPIUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer

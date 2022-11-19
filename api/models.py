@@ -22,6 +22,7 @@ class Product(models.Model):
     name = models.CharField(verbose_name='Название продукта', max_length=255)
     cost = models.IntegerField(verbose_name='Цена')
     category_id = models.ForeignKey('Category', verbose_name='ID категории', on_delete=models.CASCADE)
+    indevirator = models.IntegerField(verbose_name="Индификатор")
     cloth = models.CharField(verbose_name='Цвет товара (одежды)', max_length=255, blank=True, null=True)
 
 
@@ -29,3 +30,4 @@ class SaleCart(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user_id = models.ForeignKey(CustomUser, verbose_name='ID пользователя', on_delete=models.CASCADE)
     count = models.IntegerField(verbose_name='Счет')
+

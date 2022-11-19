@@ -1,7 +1,7 @@
 from rest_framework import serializers
 
 from accounts.models import CustomUser
-from api.models import Category, Preferencies, SaleCart
+from api.models import Category, Preferencies, SaleCart, Product
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -25,4 +25,10 @@ class SaleCartSerializer(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = CustomUser
+        fields = '__all__'
+
+
+class ProductSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Product
         fields = '__all__'
