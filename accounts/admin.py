@@ -16,7 +16,7 @@ class CustomUserAdmin(UserAdmin):
             'fields': (
                 'username', 'email', 'password', 'moderator', 'is_staff',
                 'first_name', 'last_name', 'patronymic', 'age', 'male',
-                'kid', 'animal', 'nationality', 'header', 'torso',
+                'kid', 'animal', 'card', 'header', 'torso',
                 'legs', 'face'
             )
         }),

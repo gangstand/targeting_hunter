@@ -8,8 +8,9 @@
         {% if user.moderator %}
             <h1>Вы модератор</h1>
         {% else %}
-            <h1>У вас нет прав модераторв</h1>
+            <h1>Ваша карта</h1>
             <a href="{% url 'home' %}">Вернуться на главную</a>
+            <img src="{{ path }}" alt="">
         {% endif %}
     </section>
 {% endblock content %}

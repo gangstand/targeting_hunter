@@ -22,12 +22,38 @@
                 {% endif %}
             </div>
             <div class="field">
-
                 <label class="label">Придумайте имя пользователя</label>
                 {{ form.username }}
                 {% if form.username.errors %}
                     <p class="error">{{ form.username.errors }}</p>
                 {% endif %}
+            </div>
+
+            <div class="field">
+                <label class="label">Введите имя</label>
+                {{ form.first_name }}
+                {% if form.first_name.errors %}
+                    <p class="error">{{ form.first_name.errors }}</p>
+                {% endif %}
+            </div>
+
+
+            <div class="field">
+                <label class="label">Введите фамилию</label>
+                {{ form.last_name }}
+                {% if form.last_name.errors %}
+                    <p class="error">{{ form.last_name.errors }}</p>
+                {% endif %}
+            </div>
+
+            <div class="field">
+                <label class="label">Введите отчество</label>
+                {{ form.patronymic }}
+                {% if form.patronymic.errors %}
+                    <p class="error">{{ form.patronymic.errors }}</p>
+                {% endif %}
+            </div>
+
             </div>
             <div class="field">
                 <label class="label">Придумайте надёжный пароль</label>
