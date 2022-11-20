@@ -28,8 +28,25 @@ const PersonalPage = {
         page: 'user_data'
     }),
     methods: {
+        filteredProducts() {
+            const schem = this.preferences.reduce((accumulator, currentValue) => {
+                if(!(accumulator.includes(currentValue))) return [...accumulator, currentValue.id]
+            }, [])
+            console.log(schem)
+            const products = this.products
+            const filteredProducts = products.filter(product => {
+                    console.log(product)
+                return schem.some(category => category === product.category_id)
+
+            }
+
+            )
+            console.log(filteredProducts)
+            return filteredProducts
+        },
         setProducts(products) {
-            this.products
+            console.log(products)
+            this.products = products
         },
         setUsers(users) {
             this.users = users
@@ -70,8 +87,12 @@ const PersonalPage = {
         fetchPreferences(userid) {
             instance.get(`docs/prefer?user_id=${userid}`).then(({data}) => {
                     const preferences = data.map(item => {
-                            const {name, male, animal, kid, age} = item.fields;
-                            return {name, male, animal, kid, age}
+                        console.log(item)
+                            const {name, male, animal, kid, age} = item.category
+                            const categoryId = item.prefer.category_id
+
+
+                            return {name, male, animal, kid, age, id:categoryId}
                         })
                     const schem = {}
                     preferences.map(({name}) => {
@@ -125,10 +146,6 @@ const PersonalPage = {
             console.log(this.userVisible)
             return this.userVisible ? 'search-users__field search-users__field--active' : 'search-users__field'
         },
-        filteredProducts() {
-            const products = this.products.filter(product => this.preferencesSchem.keys.some(ctegory => name === product.ca))
-
-        }
     },
     watch: {
         userid(newId) {

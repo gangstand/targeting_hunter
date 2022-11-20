@@ -64,10 +64,22 @@ class ProductAPIUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
 def getUserPreferencies(request):
     user_id = request.GET.get('user_id')
     prefer = Preferencies.objects.filter(user_id=user_id)
-    res = serializers.serialize('json', [pr.category_id for pr in prefer])
+    cat = json.loads(serializers.serialize('json', [pr.category_id for pr in prefer]))
+    pr = json.loads(serializers.serialize('json', [pr for pr in prefer]))
+    res = []
+    for i in range(len(cat)):
+        res.append({
+            'prefer': pr[i]['fields'],
+            'category': cat[i]['fields']
+        })
 
-    return HttpResponse(res)
 
+    with open('try_unicode.json', 'w') as f:
+        res = json.dumps(res, indent=2, ensure_ascii=False)
+
+    print(res, type(res))
+
+    return HttpResponse(res, content_type='application/json')
 
 def getCategoryProducts(request):
     category = Product.objects.all()

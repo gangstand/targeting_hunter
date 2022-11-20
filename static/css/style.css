@@ -903,3 +903,26 @@ a:hover {
     font-weight: 700;
 }
 
+.product {
+    width: 90%;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    font-size: 16px;
+    font-weight: 600;
+
+    padding: 10px 0;
+    border-bottom: 2px solid #000;
+
+}
+
+
+.product:first-child {
+    border-top: 2px solid #000;
+}
+
+.product:last-child {
+    border-bottom: 2px solid #000;
+}

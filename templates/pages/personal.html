@@ -70,7 +70,13 @@
                 </div>
 
 
-                <div v-if="page === 'products'" class="user-details__wrapper">Твары для него</div>
+                <div v-if="page === 'products'" class="user-details__wrapper">
+                    <h2>Товары для него</h2>
+                    <div v-for="product of filteredProducts()" class="product">
+                        <p>[[product.name]]</p>
+                        <p>[[product.cost]] руб.</p>
+                    </div>
+                </div>
             </div>
 
             <nav class="nav">
