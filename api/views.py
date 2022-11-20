@@ -1,4 +1,9 @@
+import json
+from base64 import encode
+
+from django.http import HttpResponse
 from django.shortcuts import render
+from django.core import serializers
 from rest_framework import generics
 
 from accounts.models import CustomUser
@@ -22,6 +27,9 @@ class PreferenciesAPIList(generics.ListCreateAPIView):
     serializer_class = PreferenciesSerializer
 
 
+
+
+
 class PreferenciesAPIUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Preferencies.objects.all()
     serializer_class = PreferenciesSerializer
@@ -42,6 +50,7 @@ class UserAPIList(generics.ListAPIView):
     serializer_class = UserSerializer
 
 
+
 class ProductAPIList(generics.ListCreateAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
@@ -50,3 +59,19 @@ class ProductAPIList(generics.ListCreateAPIView):
 class ProductAPIUpdateDestroy(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+
+def getUserPreferencies(request):
+    user_id = request.GET.get('user_id')
+    prefer = Preferencies.objects.filter(user_id=user_id)
+    res = serializers.serialize('json', [pr.category_id for pr in prefer])
+
+    return HttpResponse(res)
+
+
+def getCategoryProducts(request):
+    category = Product.objects.all()
+    products = json.loads(serializers.serialize('json', category))
+    res = [product['fields'] for product in products]
+
+    return HttpResponse(category, content_type='application/json')

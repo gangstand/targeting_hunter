@@ -9,6 +9,9 @@
     <meta name="description" content="A framework for launching new Django projects quickly.">
     <meta name="author" content="">
     <link rel="shortcut icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
+    <script src="{% static 'js/Cookies.js' %}"></script>
+    <script rel="preload" src="{% static 'js/Vue.js' %}"></script>
+    <script rel="preload" src="{% static 'js/Axios.js' %}"></script>
 
     {% block css %}
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
@@ -20,7 +23,6 @@
               integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
               crossorigin="anonymous">
 
-        <link rel="stylesheet" href="{% static 'css/base.css' %}">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
     {% endblock %}
 </head>
@@ -28,9 +30,9 @@
 <body>
 <header class="header">
     <div class="container header__container">
-        <div class="logo">
+        <a href="{% url 'home' %}" class="logo">
             <img src="{% static 'images/logo.png' %}">
-        </div>
+        </a>
 
         <nav class="header__nav">
             {% if user.is_authenticated %}
@@ -68,9 +70,9 @@
     <!-- 3rd party JavaScript -->
 
     <!-- Project JS -->
-    <script src="{% static 'js/base.js' %}"></script>
 
 {% endblock javascript %}
+    <script src="{% static 'js/PersonalPage.js' %}"></script>
 
 </body>
 </html>

@@ -4,13 +4,118 @@
 {% block title %}Личный кабинет{% endblock title %}
 
 {% block content %}
-    <section class="section">
-        {% if user.moderator %}
-            <h1>Вы модератор</h1>
-        {% else %}
+    {% if user.moderator %}
+        <section class="section section--personal" id="personal">
+            <div class="search-users">
+                <div :class="searchStyle" @click="setUserVisibleTrue">
+                    <input v-model="search" type="text"/>
+                    <span class="material-symbols-outlined icon">
+                        search
+                    </span>
+                </div>
+                <div class="users" id="search_users" :style="usersDisplay" @click="setUserVisibleFalse">
+                    <label v-for="user of filteredUsers" class="users__item">
+                        <input v-model="userid" name="users" :value="user.id" type="radio" style="display:none;">
+                        [[user.username]]
+                    </label>
+                </div>
+            </div>
+
+            <div class="user-details" v-if="!!userid">
+                <div v-if="page === 'user_data'" class="user-details__wrapper">
+                    <div class="wrapper">
+                        <img class="avatar" :src="currentUser.face" alt="">
+
+                        <article class="user-article">
+                            <p class="hint">Ник</p>
+                            <p class="blue">[[currentUser.username]]</p>
+                            <p class="hint">ФИО</p>
+                            <p>[[currentUser.first_name]] [[currentUser.last_name]] [[currentUser.patronymic]]</p>
+                        </article>
+                    </div>
+                    <div class="wrapper">
+                        <div class="user-features">
+                            <p>Пол: [[currentUser.male]]</p>
+                            <p>[[currentUser.фтшьфд ? 'Есть домашнее животное' : 'Домашних животных нет']]</p>
+                            <p>[[currentUser.kid ? 'Есть дети' : 'Детей нет']]</p>
+                        </div>
+
+                        <article class="user-article">
+                            <p class="hint">Элек. почта:</p>
+                            <p class="email">[[currentUser.email]]</p>
+                        </article>
+                    </div>
+                </div>
+
+
+                <div v-if="page === 'preferences'" class="user-details__wrapper">
+                    <div class="wrapper">
+                        <div class="values">
+                            <p v-for="number of numbers">[[number]]</p>
+                        </div>
+                        <div class="schem">
+                            <div class="schem__item" v-for="(value, name, index) in preferencesSchem" :style="createHeight(value)">
+                                [[name]]
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wrapper">
+                        <h2>[[currentUser.first_name]] [[currentUser.last_name]] посещал категории:</h2>
+                    </div>
+
+                    <div v-for="(value, name, index) in preferencesSchem" class="category">
+                        <p><span class="bold">[[name]]:</span> [[value]] раз</p>
+                    </div>
+
+                </div>
+
+
+                <div v-if="page === 'products'" class="user-details__wrapper">Твары для него</div>
+            </div>
+
+            <nav class="nav">
+                <div class="nav__item" id="user_data" @click="setPage">
+                    <span class="material-symbols-outlined">
+                        photo_camera_front
+                    </span>
+                    <p>Его данные</p>
+                </div>
+                <div class="nav__item" id="preferences" @click="setPage">
+                    <span class="material-symbols-outlined">
+                        bar_chart
+                    </span>
+                    <p>Категоии для него</p>
+                </div>
+                <div class="nav__item" id="products" @click="setPage">
+                    <span class="material-symbols-outlined">
+                        storage
+                    </span>
+                    <p>Продукты для него</p>
+                </div>
+
+            </nav>
+        </section>
+    {% else %}
+        <section class="section section--user">
+
             <h1>Ваша карта</h1>
-            <a href="{% url 'home' %}">Вернуться на главную</a>
-            <img src="{{ path }}" alt="">
-        {% endif %}
-    </section>
+            <div class="card">
+                <img class="card__img" src="{% static 'images/card.png' %}" alt="Sales card">
+                <img class="card__qrt" src="{{ path }}" alt="Sales card">
+                <article class="card__article">
+                    <p>{{ user.first_name }}</p>
+                    <p>{{ user.last_name }}</p>
+                    <p>{{ user.patronymic }}</p>
+                </article>
+                <p class="card__email">{{ user.email }}</p>
+            </div>
+
+
+            <a class="back-link" href="{% url 'home' %}">Вернуться на главную</a>
+        </section>
+    {% endif %}
 {% endblock content %}
+
+{% block javascript %}
+    <script src="{% static 'js/users-search.js' %}"></script>
+{% endblock javascript %}

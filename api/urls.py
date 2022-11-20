@@ -12,4 +12,7 @@ urlpatterns = [
     path('product', ProductAPIList.as_view()),
     path('product/<int:pk>/', ProductAPIUpdateDestroy.as_view()),
     path('user', UserAPIList.as_view()),
+    path('prefer', getUserPreferencies),
+    path('products', getCategoryProducts)
+
 ]
