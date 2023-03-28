@@ -13,6 +13,10 @@ DEBUG = True
 # https://docs.djangoproject.com/en/dev/ref/settings/#allowed-hosts
 ALLOWED_HOSTS = ["*"]
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://shop.kulpinov.site',
+    'http://10.0.0.2:8000'
+]
 # APPS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
@@ -22,7 +26,6 @@ INSTALLED_APPS = [
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
-    "whitenoise.runserver_nostatic",
     "django.contrib.staticfiles",
     "django.contrib.sites",
     # Third-party
@@ -42,7 +45,6 @@ INSTALLED_APPS = [
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -135,13 +137,11 @@ USE_TZ = True
 # STATIC
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#static-root
-STATIC_ROOT = str(BASE_DIR.joinpath("staticfiles"))
-# https://docs.djangoproject.com/en/dev/ref/settings/#static-url
 STATIC_URL = "/static/"
-# https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#std:setting-STATICFILES_DIRS
-STATICFILES_DIRS = [str(BASE_DIR.joinpath("static"))]
-# http://whitenoise.evans.io/en/stable/django.html#add-compression-and-caching-support
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+STATIC_ROOT = BASE_DIR / "staticfiles"
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # DJANGO-CRISPY-FORMS CONFIGS
 # ------------------------------------------------------------------------------

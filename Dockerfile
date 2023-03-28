@@ -1,23 +1,6 @@
-FROM python:3.8-alpine
-
-ENV PYTHONDONTWRITEBYTECODE 1
-ENV PYTHONUNBUFFERED 1
-
+FROM python:3.10
 WORKDIR /app
-
-RUN apk --update add
-RUN apk add gcc libc-dev libffi-dev jpeg-dev zlib-dev libjpeg
-RUN apk add postgresql-dev
-
-RUN pip install --upgrade pip
-
-COPY ./requirements.txt .
-COPY ./entrypoint.sh .
-
-RUN chmod +x entrypoint.sh
-
-RUN pip install -r requirements.txt
-
+COPY requirements.txt ./
+RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
-
-ENTRYPOINT ["/app/entrypoint.sh"]
+EXPOSE 8000
