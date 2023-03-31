@@ -12,7 +12,12 @@
                     Умный таргетинг уже здесь! С нашим сервисом вы удовлетворите любого клиента. Проследите его
                     предпочтения по камерам и сделайте уникальные акции для каждого покупателя
                 </p>
-                <button class="button"><a href="{% url 'account_signup' %}">Получить</a></button>
+                {% if user.is_authenticated %}
+                    <button class="button"><a href="{% url 'personal' %}">Получить</a></button>
+
+                {% else %}
+                    <button class="button"><a href="{% url 'account_signup' %}">Получить</a></button>
+                {% endif %}
             </article>
 
             <div class="decoration">
@@ -50,9 +55,11 @@
             </div>
         </div>
         <div class="center">
-            <button class="button button--long">
-                <a href="{% url 'account_signup' %}">Исползовать</a>
-            </button>
+                {% if user.is_authenticated %}
+                    <button class="button button--long"><a href="{% url 'personal' %}">Использовать</a></button>
+                {% else %}
+                    <button class="button button--long"><a href="{% url 'account_signup' %}">Использовать</a></button>
+                {% endif %}
         </div>
     </section>
     <section class="section">
@@ -63,7 +70,12 @@
                     Админ-панель, интерфейс вывода статиски, граффики рекомендаций пользовтелей - абсолютно все
                     доступно в вашем телефоне на мобильной версии сайта, которая загрузится на любом устройстве
                 </p>
-                <button class="button"><a href="{% url 'account_signup' %}">Начать</a></button>
+                {% if user.is_authenticated %}
+                    <button class="button"><a href="{% url 'personal' %}">Начать</a></button>
+
+                {% else %}
+                    <button class="button"><a href="{% url 'account_signup' %}">Начать</a></button>
+                {% endif %}
             </article>
 
             <div class="decoration">
